@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={concrt_one.className}>
-        <div className="w-[60vw] mx-auto bg-white text-4xl text-text border-x h-[100dvh]">
+        <div className="w-[70vw] mx-auto bg-white text-4xl text-text border-x h-[100dvh]">
           <Navbar />
           {children}
         </div>
