@@ -168,7 +168,10 @@ const JourneyPage = () => {
               {charPrompt &&
                 charPrompt?.characterOptions &&
                 charPrompt.characterOptions.map((option) => (
-                  <div className="relative w-1/3 group">
+                  <div
+                    key={"op-" + option.name}
+                    className="relative w-1/3 group"
+                  >
                     <button
                       onClick={() => {
                         changeStage(stage, charPrompt.characterPrompt, option);
