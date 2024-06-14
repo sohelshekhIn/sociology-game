@@ -140,7 +140,7 @@ const JourneyPage = () => {
     if (error) {
       window.localStorage.clear();
       window.alert("Error fetching data, please restart the game");
-      // router.push("/");
+      router.push("/");
     }
   }, [error]);
   return (
@@ -160,10 +160,13 @@ const JourneyPage = () => {
         {stage != "end" ? (
           <>
             <div className="m-5 text-lg lg:text-4xl lg:m-10 bg-primary p-5 rounded-2xl border-2 text-bg border-dashed border-accent">
-              {charPrompt && charPrompt.characterPrompt}
+              {charPrompt &&
+                charPrompt?.characterPrompt &&
+                charPrompt.characterPrompt}
             </div>
             <div className="flex flex-wrap  justify-center items-center text-xl gap-5 font-light">
               {charPrompt &&
+                charPrompt?.characterOptions &&
                 charPrompt.characterOptions.map((option) => (
                   <div className="relative w-1/3 group">
                     <button
@@ -182,7 +185,9 @@ const JourneyPage = () => {
             </div>
           </>
         ) : (
-          !loading && (
+          !loading &&
+          charPrompt &&
+          charPrompt.lifeSummary && (
             <div className="relative font-normal text-base font-sans p-5 mt-5 min-h-[200dvh]">
               <div className="flex flex-col fixed top-1/2 left-5">
                 <Link href="#summary">Jump to Summary</Link>
@@ -240,11 +245,10 @@ const JourneyPage = () => {
           </div>
           <button
             onClick={() => {
-              getAIResponse("start");
-              setStage("start");
-              setOption("");
+              window.localStorage.clear();
+              router.push("/");
             }}
-            className="py-3 px-5 text-base text-secondary bg-accent rounded-xl"
+            className="py-3 px-5 text-base text-secondary bg-accent rounded-xl hover:bg-accent/90 hover:scale-105 active:bg-accent active:scale-95 transition duration-150 ease-in-out"
           >
             Restart Journey
           </button>
